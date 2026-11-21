@@ -1,0 +1,186 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\setlist{nosep, leftmargin=*}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\title{\vspace{-2em}\large\textbf{Reproducing literature-based discovery: a hands-on survey of\\published methods and current frontier language models}}
+\author{\normalsize CAS Pilot \& Project Completion Award, 2026--2027}
+\date{}
+
+\begin{document}
+\maketitle
+% \vspace{-2.5em}
+
+%======================================================================
+% \section*{Identification}
+
+
+\begin{tabular}{@{}ll}
+Name: & Badri Adhikari \\
+Department: & Computer Science \\
+Current academic rank: & Associate Professor \\
+Previously awarded a CAS Grant? & Yes (2024) \\
+Project type: & Project completion \\
+Award period: & January 1 -- August 31, 2027 \\
+\end{tabular}
+
+%======================================================================
+\section*{Project summary}
+
+Much of what we need to know to understand diseases has already been published, but the knowledge is scattered across papers that rarely cite one another. Literature-based discovery (LBD) is a field that aims to connect these scattered findings automatically and propose new, testable hypotheses. It began in the 1980s, when Don Swanson linked two unconnected literatures and proposed that fish oil might help patients with Raynaud's syndrome, a hypothesis later supported by clinical studies. Today, many LBD systems exist, and the newest ones use large language models (LLMs) such as GPT-4. Each system, however, reports results on its own data and its own measures, and very few have been independently reproduced.
+
+Since March 2026, my PhD student Bal Nyaupane and I have reproduced six leading systems and benchmarks on our own hardware. Some published results held up closely; others did not. For example, a multi-agent LLM system reported 74\% accuracy, but our reproduction reached about 53\%, barely above the 47\% obtained by always answering ``yes.'' Because our budget limited us to free, open-weight models, we cannot yet tell whether such gaps come from the methods or from the weaker models we substituted.
+
+This project will complete a survey paper built on actual reproduction. Most surveys summarize what each paper reports; ours runs each system and checks its claims. We will reproduce the remaining systems and compare similar methods under identical conditions. We will use OpenAI API credits for GPT-3.5 and GPT-4 experiments and Claude Max to verify model behavior manually in the browser. For a fixed set of cases, we will check how the same inputs perform with the latest available Claude frontier models. Bal and I will write and submit the manuscript by August 2027 and release the code and evaluation sets.
+
+%======================================================================
+\section*{Project plan and activities}
+
+\subsection*{Background}
+
+LBD methods fall into a few families. Co-occurrence methods, such as KinderMiner~\cite{kuusisto2017} and Serial KinderMiner (SKiM)~\cite{millikin2023}, score two concepts by how often they appear together in PubMed abstracts. Learned rankers, such as LORE~\cite{li2025}, use language models to read abstracts and a conventional model to rank candidates. Graph methods, such as AGATHA~\cite{sybrandt2020}, predict missing links in a network built from the literature. Most recently, LLM-based systems judge evidence that a search step retrieves (SKiM-GPT~\cite{freeman2026}), generate hypotheses directly (LLM4BioHypoGen~\cite{qi2024}), or use teams of LLM agents that propose, critique, and decide (Coated-LLM~\cite{xu2025}, BioVerge~\cite{yang2025}). Benchmarks such as Dyport~\cite{tyagin2024} test whether a system can anticipate connections before they are published.
+
+Existing surveys of LBD summarize what each paper reports. However, these reports are rarely comparable: each system is evaluated on its own task, data, and metric, and released code often omits the data splits, scoring scripts, or model outputs needed to check the claims. The central question of this project is: \textbf{Which published LBD methods hold up when reproduced independently, and how do they compare with similar methods under the same conditions?}
+
+\subsection*{Work completed so far}
+
+This work began in March 2026, before I received my UMSL Mid-career Research Award in July 2026, and it lays the foundation for that award's project. Bal and I built a local LBD environment on a research server with two NVIDIA RTX 6000 GPUs, purchased under my 2020 NSF CISE CRII award. It includes a searchable index of the 2026 PubMed baseline (about 40 million abstracts) and locally served open-weight LLMs. We then reproduced six systems and benchmarks, each with a written report (see Table~1).
+
+\begin{table}[h]
+\centering\small
+\caption{Reproductions completed to date (open-weight models only).}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+System & Result of our reproduction \\
+\midrule
+SKiM / SKiM-GPT & All 20 published drug--gene triples recovered; 16 of 19 published classifications reproduced with an 8B open model in place of OpenAI o3; scores flipped sign across repeated runs. \\
+LORE & All three published settings reproduced within 0.1 percentage point; on six difficult diseases, LORE (38.0\% MAP) more than doubled co-occurrence (16.5\%) and SKiM (15.5\%). \\
+Dyport & Five of eight published results reproduced (three required unreleased data); KinderMiner and SKiM added; SKiM-GPT could not be scored because none of 20 sampled future discoveries had any earlier evidence for its LLM to read. \\
+Coated-LLM & Pipeline runs end to end, but accuracy was 0.50--0.53 versus 0.74 reported, against an always-``yes'' baseline of 0.47. \\
+LLM4BioHypoGen & One of twelve published overlap scores reproduced within statistical uncertainty; several published values are consistent with scoring unedited model output. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Our pilot runs relied on local open-weight models. The Coated-LLM and SKiM-GPT reports identify model substitution as one possible explanation for differences from published results. Checking the same inputs with commercial models can show which behaviors persist across models.
+
+\subsection*{Objectives and approach}
+
+The project has three objectives, each producing a stand-alone part of the survey.
+
+\textbf{Objective 1. Compare model behavior through API runs and manual verification.} We will select a fixed set of cases from SKiM-GPT, Coated-LLM, and LLM4BioHypoGen before testing. We will use GPT-3.5 and GPT-4 through the OpenAI API where the relevant versions are available. For manual verification, we will submit the same prompts and supporting material by hand in fresh Claude browser chats and check how the most recent available Claude frontier models respond. We will record the model identifier or displayed label, date, settings, and response, and apply the same scoring rules to every output. We will repeat selected queries to determine whether findings such as SKiM-GPT's score reversals recur.
+
+\textbf{Objective 2: Complete coverage of the state of the art.} We will reproduce BioVerge, the multi-agent framework of LLM4BioHypoGen, and AGATHA. Each addition follows the same protocol as before: run the released code, compare against published values on criteria fixed in advance, and document every divergence and its cause.
+
+\textbf{Objective 3: Compare similar methods with one another.} Methods will be compared within families on shared tasks: ranking methods on the Dyport benchmark and the frozen six-disease LORE set, and LLM-based generators on the same hypothesis-generation items, scored by one independent judge model. We will report each difference with a confidence interval and a paired statistical test, because our pilot showed that overlap scores such as BLEU vary by 16--62\% across random seeds alone.
+
+\subsection*{Personnel, resources, and ethics}
+
+As PI, I will design the cross-system comparisons, independently repeat selected browser checks, check the statistical analyses, and co-write the manuscript with Bal Nyaupane, a PhD student in Computer Science. We will use the existing research server for local runs. The project uses only published literature, publicly released benchmarks, and public databases. It involves no human or animal subjects, so IRB review is not required.
+
+\subsection*{Timeline}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Period & Activities and milestones \\
+\midrule
+Jan--Mar 2027 & Objective 1: run GPT-3.5 and GPT-4 API experiments and begin manual verification in Claude using the same inputs. Milestone: initial comparisons documented. \\
+Apr--Jun 2027 & Objective 2: reproduce BioVerge, the LLM4BioHypoGen multi-agent framework, and AGATHA; Objective 3: shared-task comparisons within each family. Repeat browser cases with inconsistent results. Milestone: all reproductions documented. \\
+Jul--Aug 2027 & Verify final browser comparisons, analyze results, write the manuscript, and release the code and evaluation sets. Milestone: manuscript submitted. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Relation to other support and contingencies}
+
+My UMSL Mid-career Research Award funds a separate project, a new discovery pipeline for chronic disease, for which this survey provides the baselines. This award also does not fund my proposed Fall 2027 sabbatical, which is pending and addresses a separate question: whether LLMs used for LBD are reasoning, retrieving, or recalling. I aim to finish the survey by August 2027 so that the sabbatical, if approved, can begin the proposed new work.
+
+We will prioritize cases where our local results diverged from published findings and include cases where they agreed. When a published model version is unavailable, we will document the version used and report its results as a comparison. If usage limits intervene, we will prioritize coverage of the fixed set and report how many cases we completed for each model.
+
+%======================================================================
+\section*{Project outcomes}
+
+Bal Nyaupane and I will submit the survey manuscript for peer review by August 2027 to Briefings in Bioinformatics or the Journal of Biomedical Informatics. To my knowledge, it will be the first survey of LBD built on independent reproduction of the systems it covers. For each system, it will report what was reproduced, what was not, and why. It will compare similar methods under identical conditions and report how the same inputs performed with local open-weight models, OpenAI API models, and Claude frontier models tested in the browser.
+
+The project will also produce three further outcomes:
+\begin{enumerate}[label=(\arabic*)]
+\item Public release of the reproduction code, the adapters that let text-based and identifier-based systems be scored together, the frozen evaluation sets, and the reproduction reports, so that others can check and extend the comparisons.
+\item Verified baselines for my lab's next work on AI reasoning for scientific discovery, which I plan to propose to NSF's Robust Intelligence program in February 2028.
+\item The first main chapter, after the introduction, of Bal Nyaupane's PhD dissertation.
+\end{enumerate}
+
+For the field, the survey addresses a growing problem. LLM-based discovery systems are being adopted quickly, but their claims are rarely checked. Our results so far show that some published results hold up and others do not, that some systems cannot be evaluated on the benchmarks designed to test discovery, and that common text-overlap scores are too noisy to separate methods. A survey that documents these findings system by system gives researchers a reliable basis for choosing and evaluating methods.
+
+For my career, the project completes a shift in my research from predictive modeling in computational biology, such as protein structure prediction supported by NSF, toward AI for scientific discovery in biomedicine. A widely usable survey and released benchmarks will establish my lab in this area and strengthen future proposals to NSF and NIH.
+
+%======================================================================
+\begin{thebibliography}{10}\small
+\setlength{\itemsep}{0pt}
+\bibitem{swanson1986} Swanson DR. Fish oil, Raynaud's syndrome, and undiscovered public knowledge. \emph{Perspectives in Biology and Medicine}. 1986;30(1):7--18.
+\bibitem{kuusisto2017} Kuusisto F, Steill J, Kuang Z, Thomson J, Page D, Stewart R. A simple text mining approach for ranking pairwise associations in biomedical applications. \emph{AMIA Joint Summits on Translational Science Proceedings}. 2017;2017:166--174.
+\bibitem{millikin2023} Millikin RJ, et al. Serial KinderMiner (SKiM) discovers and annotates biomedical knowledge using co-occurrence and transformer models. \emph{BMC Bioinformatics}. 2023;24:412.
+\bibitem{li2025} Li PH, Sun YY, Juan HF, Chen CY, Tsai HK, Huang JH. A large language model framework for literature-based disease--gene association prediction. \emph{Briefings in Bioinformatics}. 2025;26(1):bbaf070.
+\bibitem{sybrandt2020} Sybrandt J, Tyagin I, Shtutman M, Safro I. AGATHA: automatic graph mining and transformer based hypothesis generation approach. In: \emph{Proceedings of the 29th ACM International Conference on Information \& Knowledge Management (CIKM)}. 2020:2757--2764.
+\bibitem{freeman2026} Freeman J, et al. SKiM-GPT: combining biomedical literature-based discovery with large language model hypothesis evaluation. \emph{BMC Bioinformatics}. 2026;27:16.
+\bibitem{qi2024} Qi B, et al. Large language models as biomedical hypothesis generators: a comprehensive evaluation. In: \emph{Conference on Language Modeling (COLM)}. 2024.
+\bibitem{xu2025} Xu Q, Soto C, Shahnawaz M, et al. Multi agent large language models for biomedical hypothesis generation in drug combination discovery. \emph{iScience}. 2025. doi:10.1016/j.isci.2025.113984.
+\bibitem{yang2025} Yang F, et al. BioVerge: a comprehensive benchmark and study of self-evaluating agents for biomedical hypothesis generation. In: \emph{NeurIPS 2025 Workshops (LAW and AI4Science)}. 2025. arXiv:2511.08866.
+\bibitem{tyagin2024} Tyagin I, Safro I. Dyport: dynamic importance-based biomedical hypothesis generation benchmarking technique. \emph{BMC Bioinformatics}. 2024;25:213.
+\end{thebibliography}
+
+%======================================================================
+\clearpage
+\section*{Outcomes from the previous award (2024)}
+
+In September 2024, I received a CAS Pilot/Project Completion Grant of \$4,800 to collect preliminary data on how teachers view process-revealing tools such as Process Feedback, an online tool I developed that shows students how they wrote an essay or a program. The plan was to recruit 12 high school writing teachers and 12 computer programming instructors, have their students use the tool, survey and interview the teachers, and submit a manuscript to IEEE Frontiers in Education or AERA. The data were meant to strengthen future proposals to IES and NSF, following my IES proposal ``Quantifying the Writing Process,'' submitted in September 2024.
+
+IRB approval took more than six months, which left too little of the academic year to recruit high school teachers. I therefore focused the study on introductory programming courses at UMSL. Two graduate teaching assistants and one instructor in the Department of Computer Science participated in the study and each received a \$200 honorarium from the award. I returned the remaining funds to the College. Students in CS1 and CS2 used Process Feedback for all coursework, submitted a coding process report with every assignment, completed an end-of-semester reflection assignment based on their own reports, and were invited to a survey. Of 111 students invited, 59 responded. Of those who answered, 79\% rated the tool as helpful for their learning, and 74\% of those who completed the reflection assignment found their process reports helpful for it.
+
+The results are reported in the manuscript ``Reflection With Coding Process Reports: Student Perceptions in Introductory Programming Courses'' by B.~Adhikari, S.~Dhakal, and P.~Paudel, submitted to \emph{IEEE Transactions on Education} (TE-2026-000225). The journal requested a major revision in October 2026, and the revised manuscript has been resubmitted. Both co-authors are students, one of them from UMSL.
+
+One lesson from this project is that IRB review can take a large part of a one-year award. The current project involves no human subjects and builds on reproductions that are already complete, so its main outcome, a manuscript, depends only on work that Bal and I carry out ourselves.
+
+%======================================================================
+\clearpage
+\section*{Budget and justification}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\toprule
+Item & Amount \\
+\midrule
+OpenAI API credits (GPT-3.5 and GPT-4) & \$600 \\
+Claude Max 5x browser access for the graduate research assistant, \$100/month $\times$ 8 months & \$800 \\
+Claude Max 20x browser access for the PI, \$200/month $\times$ 8 months & \$1,600 \\
+\midrule
+\textbf{Total} & \textbf{\$3,000} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{OpenAI API credits.} The credits cover programmatic GPT-3.5 and GPT-4 runs on selected cases. API access lets us submit the fixed inputs through the reproduction pipelines and retain the outputs for scoring against the local runs.
+
+\textbf{Claude Max for manual verification.} The free browser tier reached its usage limit after one or two large queries in preliminary testing. The two subscriptions let us repeat the same long inputs, including prompts and supporting abstracts, and check their behavior with current Claude frontier models.
+
+\textbf{Claude Max 5x for the graduate research assistant.} Bal will submit the matched cases to Anthropic frontier models, record outputs, and run follow-up checks as the shared evaluations are completed from January through August.
+
+\textbf{Claude Max 20x for the PI.} I will independently repeat cases where the original and local results diverge or where repeated runs produce different conclusions. The higher usage allowance supports multiple submissions of the longest inputs during verification sessions.
+
+\textbf{Availability through the university.} The university access available to our team does not include the paid browser plans budgeted here.
+
+\end{document}

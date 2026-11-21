@@ -1,0 +1,141 @@
+(IEEE Transactions on Education) OR (onbehalfof@manuscriptcentral.com)
+Fw: Results of IEEE Transactions on Education Manuscript Review [TE-2026-000225]
+Adhikari, Badri
+
+pp918@msstate.edu
+Dhakal, Sameep (MU-Student)
+FYI.
+
+Best,
+Badri Adhikari
+Associate Professor
+Department of Computer Science
+University of Missouri-St. Louis
+
+
+
+
+
+________________________________________
+From: IEEE Transactions on Education <onbehalfof@manuscriptcentral.com>
+Sent: Sunday, October 4, 2026 5:33 AM
+To: Adhikari, Badri
+Cc: Adhikari, Badri; Dhakal, Sameep (MU-Student); Paudel, Priyanka (UMSL-Student); jiabinzhu@sjtu.edu.cn; a.chhuriyal@ieee.org
+Subject: Results of IEEE Transactions on Education Manuscript Review [TE-2026-000225]
+
+WARNING: This message has originated from an External Source. This may be a phishing expedition that can result in unauthorized access to our IT System. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+Dr. Adhikari:
+
+Thank you for submitting the manuscript titled "Reflection Instead of Plagiarism Policing With Coding Process Reports and Process Feedback", TE-2026-000225. Based on two reviews, and comments from the associate editor, I think a major revision of the manuscript is required before it might be ready for publication in the  IEEE Transactions on Education.  If you wish to submit a revision for re-review, the revision should be submitted no later than 03-Nov-2026.
+
+When you are ready to submit your revision, visit the following link:
+https://ieee.atyponrex.com/submission/submissionBoard/REX-PROD-2-DCBCBECA-A4E5-4E41-ACF5-FAE63AF88CBE-4BE208A0-3131-44D7-87C9-6270C1587380-39494/current?idtype=external
+
+Please see below for instructions on submitting a revision.
+
+Comments from the associate editor, and comments from the reviewers can be found below.
+
+Thank you for your interest in publishing in the Transactions.
+
+Sincerely,
+
+
+Dr. Jiabin Zhu
+Editor-In-Chief
+IEEE Transactions on Education
+
+Please note that submitting a revision does not of itself guarantee that the manuscript will be accepted for publication; the re-review process has the same criteria and decision options as in the original review process.
+
+When reviewing the manuscript, each reviewer was asked to complete two questionnaires: one that directed comments to the Editorial Board and one that directed comments to the author(s) of the manuscript.  You will find attached reviewer comments directed to you.
+
+Should you elect to submit a revised manuscript for a new review, you will upload TWO files:
+1. A short description of how you have addressed each of the reviewers' comments.
+2. Your manuscript itself, in journal format.
+
+PLEASE NOTE that your entire manuscript must be written in the third person. DO NOT USE THE WORDS "I", "WE", OR "OUR" IN YOUR MANUSCRIPT!
+
+Also note that only the first ten journal pages for Scholarship of Application and Scholarship of Discovery are published at no cost to the author; any further pages (or part of a page) will incur a charge of $200 per page.  For the first twelve journal pages for Scholarship of Integration are published at no cost to the author; any further pages (or part of a page) will incur a charge of $200 per page.
+
+When considering a manuscript for publication, the Transactions is looking for five manuscript components:
+(1) curriculum content in an appropriate discipline (electrical engineering, computer engineering, electrical technology, or a related discipline) or address a topic in K-12 education or industrial education,
+(2) a description of the course or course sequence in which the content is presented,
+(3) a description of the pedagogical issue(s) being addressed,
+(4) information that will assist educators in the discipline in improving instruction in the discipline, and
+(5) meaningful, statistically-sound assessment/evaluation data that provides information relative to the strengths and weaknesses of the curriculum content in satisfying the pedagogical issues being addressed.
+You should make every effort to include all five components in your revision.
+
+Comments from the Associate Editor:
+
+Both reviewers recognized the potential value of the process-focused and reflection-oriented approach, but raised substantial concerns regarding the alignment between the manuscript’s claimed contribution and the evidence presented. In particular, the current evaluation primarily captures students’ perceptions and does not directly support the stronger claims regarding reflection, learning, metacognition, or plagiarism reduction. A major revision is needed to better align the contribution, analysis, and claims with the available evidence and to more fully develop and evaluate the reflection component of the work.
+
+Reviewer comments to authors:
+
+Reviewer: 1
+
+Recommendation: Reject
+
+Comments:
+Although the tool is interesting, you need to have clear what the key impact of the tool to learning. Is it reflection? or is keeping track of their keystrokes? or both?
+
+Then you need to measure that impact more precisely. you may have already the data to do that from the reports, but it is not reflected in the paper.
+
+Additional Questions:
+Check All Items That Apply to Manuscript:
+
+1. Describe the intent of this manuscript, the level of interest that this manuscript will generate in the faculty teaching this/these course(s), and the contributions that this manuscript makes to engineering education.: The paper present an online tool that captures and report the coding process to the students. The fact it captures the code edits aims to discourage students from a copy/paste approach, and the compiler offers support to novices.
+
+The contribution of the visual summaries has not been explained or measured. Instead, an end-of course reflection is presented to describe the student experience.
+
+2. Discuss the technical accuracy of the manuscript.: The tool has a AI-supported compiler that has been presented before, hence it appears from  the new contribution will be on the impact that the capture and summarization of the coding process has on both student approach and student learning.
+
+As described in page 6, this process-focused approach is beneficial   " (1) before students begin, it encourages them to reflect on how they plan to approach the task; (2) during the assignment, it reminds them that the goal is to improve their process, not just to produce a correct outcome;"
+
+However, how the tool encourages reflection before and during the process is not covered in the case study which only collect student's perceptions of the tool as a whole.
+Thus, the case study does not align with the goals and motivation of the submitted paper.
+
+There are some missing information on the way the students used the tool. How often do students need to produce a coding report?
+For example, are they asked to submit the PDF to a local autograder tool? or does the system includes its own local autograder?
+
+Student process (number of submissions, edits between submission, etc) may be compared with previous cohorts that did not use the tool to describe the impact.
+
+3.  For submission category Discovery ONLY.  Discuss the educational experiment performed, the control and experimental group, number of students nvolved, the objective data obtained, and the overall learning outcomes of this data.:
+
+4.  Discuss the clarity of the manuscript. Is it easy to read? Do ideas flow clearly? Will a reader in a different engineering discipline be able to follow the presentation in the manuscript?: The papers reads ok but as described below there is a misalignment between what is described in section III and what is reported in the case study.
+
+For example, Table 1 indicates "integrated reflection prompts; encourages self-reflection;" but no quantitative or qualitative data of  such prompts is presented or discussed.
+
+The paper title start with the word "Reflection" but you focus your analysis on the student survey instead of discussing how you created the "bonus assignment" and analyse the student answers.
+
+5. Discuss the relationship of the manuscript to related literature (text books, reference books, archival journals, and conference papers). Are the proper references cited? Are the cited references adequate?: The paper lacks a section discussing the reflective approach provided by the tool and how this links to the literature of reflection in CS1/Cs2
+
+6. Other Comments to the Author(s):
+
+I consider this manuscript: Of interest to most readers
+
+
+Reviewer: 2
+
+Recommendation: Accept After Major Revisions
+
+Comments:
+(There are no comments. Please check to see if comments were included as a file attachment with this e-mail or as an attachment in your Author Center.)
+
+Additional Questions:
+Check All Items That Apply to Manuscript:
+
+1. Describe the intent of this manuscript, the level of interest that this manuscript will generate in the faculty teaching this/these course(s), and the contributions that this manuscript makes to engineering education.:
+
+2. Discuss the technical accuracy of the manuscript.:
+
+3.  For submission category Discovery ONLY.  Discuss the educational experiment performed, the control and experimental group, number of students nvolved, the objective data obtained, and the overall learning outcomes of this data.:
+
+4.  Discuss the clarity of the manuscript. Is it easy to read? Do ideas flow clearly? Will a reader in a different engineering discipline be able to follow the presentation in the manuscript?:
+
+5. Discuss the relationship of the manuscript to related literature (text books, reference books, archival journals, and conference papers). Are the proper references cited? Are the cited references adequate?:
+
+6. Other Comments to the Author(s):
+
+I consider this manuscript: Of interest to most readers
+
+
+MaR
